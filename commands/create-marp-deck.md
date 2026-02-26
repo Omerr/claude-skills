@@ -131,10 +131,10 @@ The deck follows this exact order:
 **Date**: Month Year
 ```
 
-### 2. Questions / Goals Slide
+### 2. Questions / Goals slide
 List 3-5 questions the deck will answer, as a numbered list with bold lead-ins.
 
-### 3. Agenda Slide
+### 3. Agenda slide
 ```markdown
 <!-- _class: lead title-slide -->
 
@@ -150,23 +150,23 @@ Short description
 Short description
 ```
 
-### 4. For Each Part: Section Divider + Content Slides
+### 4. For each part: section divider + content slides
 
 **Section divider** (full-bleed colored background):
 ```markdown
 <!-- _header: "" -->
 <!-- _class: lead part-NAME -->
 
-# Part N: Section Title
+# Part N: Section title
 
 **One-line description**
 ```
 
 **Content slides** (with breadcrumb header):
 ```markdown
-<!-- header: "**Active** > Other > Other" -->
+<!-- header: "**Active section** > Other section > Other section" -->
 
-# Slide Title
+# Slide title
 
 Content here
 ```
@@ -180,15 +180,16 @@ End with summary/takeaway slides, still within the last section.
 
 ## FORMATTING RULES
 
-1. **No trailing periods** on bullets, text lines, or table cells
-2. **Single dash** (`-`) for parenthetical separators, not double dash (`--`)
-3. **Backticks** for program names, file names, and technical identifiers (not bold)
-4. **Bold** for emphasis on key phrases and findings
-5. **Tables** for data comparisons - keep them concise
-6. **Blockquotes** (`>`) for key callouts or distinctions
-7. **One idea per slide** - if a slide is getting dense, split it into two
-8. Keep bullet lists to 3-5 items max per slide
-9. No parenthetical notes in the slide body unless absolutely necessary
+1. **Sentence case for all headings** — only capitalize the first letter and proper nouns (e.g., "Get started in 5 minutes", not "Get Started in 5 Minutes"). Breadcrumb headers follow the same rule
+2. **No trailing periods** on bullets, text lines, or table cells
+3. **Single dash** (`-`) for parenthetical separators, not double dash (`--`)
+4. **Backticks** for program names, file names, and technical identifiers (not bold)
+5. **Bold** for emphasis on key phrases and findings
+6. **Tables** for data comparisons - keep them concise
+7. **Blockquotes** (`>`) for key callouts or distinctions
+8. **One idea per slide** - if a slide is getting dense, split it into two
+9. Keep bullet lists to 3-5 items max per slide
+10. No parenthetical notes in the slide body unless absolutely necessary
 
 ---
 
