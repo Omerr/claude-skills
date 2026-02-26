@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Stop Staring at a Blank Deck</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Stop Staring at a Blank Deck</h1>
+</header>
+<h1 id="stop-staring-at-a-blank-deck">Stop Staring at a Blank Deck</h1>
+<p>The hard part of building a presentation is figuring out the <em>story</em>. What are you trying to say? What’s the structure? Which sections build on which? Where does the data go, table or bullets? Before the comparison or after?</p>
+<p>What <em>would</em> help is having something to <strong>react to</strong>. Starting from zero is hard. Reacting to a draft is fast. “Move this before that” is way easier than “what should I say?”</p>
+<p>That’s the workflow I want to show you. I use Claude Code + Marp to think through presentations. Claude helps me brainstorm the story, gives me a first draft to react to, and then I iterate, either through “conversation” or by editing the Markdown directly. The whole thing is a text file. 🎉</p>
+<h2 id="the-workflow">The Workflow</h2>
+<p>The process has four stages: <strong>Brainstorm</strong>, <strong>React</strong>, <strong>Iterate</strong>, <strong>Export</strong>. Let me walk through each one.</p>
+<h3 id="brainstorm">Brainstorm</h3>
+<p>You kick things off with a slash command (I will provide you with this command later):</p>
+<pre><code>/create-marp-deck API rate limiting</code></pre>
+<p>Claude starts by interviewing you, asks about the goal, audience, key points, any data you want to include. This partforces you to articulate the story before a single slide exists.</p>
+<figure>
+<img src="images/mock-brainstorm.png" alt="" /><figcaption>Mock terminal showing Claude Code interviewing the user about their presentation — asking about the goal, audience, and key sections</figcaption>
+</figure>
+<p>Think of it as a lightweight brainstorm: you talk through what you’re trying to say, and Claude helps you structure it.</p>
+<h3 id="react">React</h3>
+<p>Once you’ve aligned on the structure, Claude generates the full Marp Markdown file and exports it. You get a solid first draft you can <em>react to</em> and reshape.</p>
+<figure>
+<img src="images/slide.001.png" alt="" /><figcaption>Title slide with dark gradient background showing “API Rate Limiting - A Technical Deep Dive”</figcaption>
+</figure>
+<p>That title slide came from this Markdown:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">&lt;!-- _class: lead title-slide --&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu"># API Rate Limiting</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="fu">## A Technical Deep Dive</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>**Team**: Platform Engineering</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>**Date**: February 2026</span></code></pre></div>
+<p>Is it perfect? Probably not. But now you have something concrete, with sections, structure, and a story, that you can push around. That’s so much faster than starting from a blank canvas.</p>
+<p>When you go through the slides, you <em>feel</em> if the story is coherent and clear.</p>
+<h3 id="iterate">Iterate</h3>
+<p>While reviewing the draft, it will inevitably spark ideas: “oh, I should add a comparison table here,” “this section is too dense, maybe split it into two,” “move this summary up to the top.”</p>
+<p>One way to make such edits, is to ask Claude Code to do that:</p>
+<pre><code>&quot;Slide 6 is too dense. Split the algorithm comparison into
+two slides, one for token bucket, one for sliding window.&quot;</code></pre>
+<figure>
+<img src="images/mock-iterate.png" alt="" /><figcaption>Mock terminal showing Claude Code splitting a slide and adding a callout, with file diffs</figcaption>
+</figure>
+<p>You can also edit in <strong>VS Code</strong> with the Marp extension for live preview. Open the <code>.md</code> file, hit <code>Ctrl+Shift+V</code>, and you get the source on the left with rendered slides on the right. Claude Code edits the file, VS Code detects the change, and the preview updates automatically. (I keep both open side by side and it just works.)</p>
+<figure>
+<img src="images/deck-preview-vs-code.png" alt="" /><figcaption>Me editing the deck that I created to help me think through this article</figcaption>
+</figure>
+<h3 id="export">Export</h3>
+<p>When you’re done, you get three files:</p>
+<ul>
+<li><code>.md</code> – the source (version-controlled, diffable)</li>
+<li><code>.html</code> – open in any browser, share via Slack</li>
+<li><code>.pptx</code> – open in PowerPoint, present anywhere</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>$ <span class="ex">marp</span> --no-stdin deck.md -o deck.html</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="bu">[</span>  INFO<span class="bu"> ]</span> <span class="ex">Converting</span> 1 markdown...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="bu">[</span>  INFO<span class="bu"> ]</span> <span class="ex">deck.md</span> =<span class="op">&gt;</span> deck.html</span></code></pre></div>
+<figure>
+<img src="images/mock-export.png" alt="" /><figcaption>Mock terminal showing marp CLI exporting to HTML and PPTX</figcaption>
+</figure>
+<p>The skill runs the export commands automatically after generating the deck. A 15-slide deck converts in about 2 seconds.</p>
+<h4 id="editable-pptx">Editable PPTX</h4>
+<p>The standard PPTX export renders each slide as an image — pixel-perfect, but you can’t edit the text in PowerPoint or Google Slides. If you need editable text, Marp has a <code>--pptx-editable</code> flag that uses LibreOffice under the hood to produce real text boxes.</p>
+<p>The catch: LibreOffice creates text boxes that are too narrow, so text wraps and overlaps. The skill includes a python-pptx post-processing script that automatically widens the text boxes to fix this. Just ask for “editable PPTX” and the skill handles the rest — the LibreOffice conversion, the text box fix, everything.</p>
+<h2 id="get-started-in-5-minutes">Get Started in 5 Minutes</h2>
+<p>OK, are you ready? Here’s everything you need:</p>
+<ol type="1">
+<li><p><strong>Install Marp CLI</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">npm</span> install -g @marp-team/marp-cli</span></code></pre></div></li>
+<li><p><strong>Grab the skill</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">git</span> clone https://github.com/Omerr/claude-skills.git ~/claude-skills</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="fu">ln</span> -s ~/claude-skills/commands/create-marp-deck.md ~/.claude/commands/</span></code></pre></div></li>
+<li><p><strong>Run it</strong>:</p>
+<pre><code>/create-marp-deck your topic here</code></pre></li>
+<li><p><strong>Iterate</strong>: React to the draft, refine through conversation or VS Code, export.</p></li>
+</ol>
+<p>That’s it. Four steps. Fork the repo and customize the conventions to match your style.</p>
+<h2 id="use-case-this-very-article">Use Case: This Very Article</h2>
+<p>Want to see this workflow in practice? You’re looking at it.</p>
+<p>I wrote this article by first creating a slide deck using exactly the process I described above. I ran <code>/create-marp-deck</code>, answered the interview questions, got a first draft, and iterated until the story felt right. You can <a href="https://omerr.github.io/claude-skills/presentations/claude-code-marp/">see the deck here</a>.</p>
+<p>Why start with slides? Because a deck forces you to be concise and to go through the <em>story</em>. If the story doesn’t flow across 15 slides, it won’t flow across 1,500 words either. The deck became my outline, and once I had a coherent structure there, writing the article was much easier.</p>
+<p>So if you’re ever staring at a blank doc thinking “I should write a blog post about X,” try making a deck first. You might be surprised how much faster the writing goes when the story is already figured out. 😎</p>
+<h2 id="under-the-hood">Under the Hood</h2>
+<p>If you’re curious about what makes this work, read on. If not, you’re all set. 🙌🏻</p>
+<h3 id="marp-markdown-slides">Marp: Markdown → Slides</h3>
+<p><strong><a href="https://marp.app/">Marp</a></strong> (Markdown Presentation Ecosystem) converts <code>.md</code> files into slides. Your deck starts with frontmatter:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="pp">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="fu">marp</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="fu">paginate</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="fu">size</span><span class="kw">:</span><span class="at"> </span><span class="dv">16:9</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="pp">---</span></span></code></pre></div>
+<p>Four lines and you have widescreen, paginated slides. Slide breaks are just <code>---</code> in the Markdown. Your presentation is a text file: version-controlled, diffable, and AI-editable.</p>
+<h3 id="the-skill-file">The Skill File</h3>
+<p>You <em>could</em> just ask Claude Code to “make me a Marp presentation” every time. But you’d spend half the conversation explaining your preferred format, color palette, and slide structure.</p>
+<p>Instead, I created a <strong>Claude Code skill</strong>, a reusable set of instructions that Claude follows whenever you invoke it. It has two parts:</p>
+<ol type="1">
+<li>An <strong>interview phase</strong> that gathers context before generating anything (the 5 questions from the brainstorm step)</li>
+<li>A <strong>generation phase</strong> with the full Marp conventions: CSS palette, slide structure, breadcrumb pattern, formatting rules, and export commands</li>
+</ol>
+<p>The full skill is about 200 lines. That sounds like a lot, but you write it once and then every deck you create follows the same polished conventions automatically.</p>
+<h3 id="section-dividers">Section Dividers</h3>
+<p>Each section of the deck gets its own gradient background. So when you’re presenting, the audience intuitively knows when you’ve moved to a new topic:</p>
+<figure>
+<img src="images/slide.004.png" alt="" /><figcaption>Section divider slide with blue gradient showing “Part 1: The Problem”</figcaption>
+</figure>
+<p>Applied via CSS classes in the skill:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">&lt;!-- _class: lead part-problem --&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="fu"># Part 1: The Problem</span></span></code></pre></div>
+<h3 id="breadcrumb-navigation">Breadcrumb Navigation</h3>
+<p>This is my favorite part of the whole setup.</p>
+<p>Every content slide has a breadcrumb header at the top that shows where you are in the deck:</p>
+<figure>
+<img src="images/slide.008.png" alt="" /><figcaption>Content slide showing breadcrumb “The Problem &gt; <strong>Algorithms</strong> &gt; Implementation” with the current section highlighted in blue</figcaption>
+</figure>
+<p>See that header? “The Problem &gt; <strong>Algorithms</strong> &gt; Implementation”, with “Algorithms” highlighted in blue.</p>
+<p>In Marp, this is done with a simple HTML comment:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co">&lt;!-- header: &quot;The Problem &gt; **Algorithms** &gt; Implementation&quot; --&gt;</span></span></code></pre></div>
+<p>The <code>**bold**</code> text renders in blue (via CSS <code>header strong { color: #2563eb; }</code>), while the rest stays gray. You set it once per section and it persists until you change it.</p>
+<p>How often have you sat through a presentation wondering “wait, where are we?” 🤔</p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>The hard part of presentations is telling a coherent story. Get yourself a first draft to react to, iterate until it flows, and export. That’s it.</p>
+<p>If you want to try it: <code>npm install -g @marp-team/marp-cli</code>, grab the <a href="https://github.com/Omerr/claude-skills">skill file</a>, and run <code>/create-marp-deck</code>. You’ll have a deck in minutes and a workflow you can reuse for every presentation after that.</p>
+<hr />
+<h3 id="about-the-author">About the Author</h3>
+<p><a href="https://www.linkedin.com/in/omer-rosenbaum-034a08b9/">Omer Rosenbaum</a> is <a href="https://swimm.io/">Swimm</a>’s Chief Technology Officer. He’s the author of the Brief <a href="https://youtube.com/@BriefVid">YouTube Channel</a>. He’s also a cyber training expert and founder of Checkpoint Security Academy. He’s the author of <a href="https://www.freecodecamp.org/news/product-led-research-a-practical-guide-for-randd-leaders-full-book/">Product-Led Research</a>, <a href="https://www.freecodecamp.org/news/gitting-things-done-book/">Gitting Things Done</a> (in English) and <a href="https://data.cyber.org.il/networks/networks.pdf">Computer Networks (in Hebrew)</a>. You can find him on <a href="https://twitter.com/Omer_Ros">Twitter</a>.</p>
+</body>
+</html>
