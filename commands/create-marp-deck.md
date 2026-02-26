@@ -203,3 +203,45 @@ npx @marp-team/marp-cli@latest --no-stdin --pptx FILENAME.md -o FILENAME.pptx
 ```
 
 Always use `--no-stdin` to prevent marp from hanging on stdin.
+
+---
+
+## EDITABLE PPTX EXPORT (OPTIONAL)
+
+If the user asks for editable PPTX (text that can be edited in PowerPoint or Google Slides), run these additional steps. This requires LibreOffice and python-pptx to be installed.
+
+```bash
+# PPTX - editable text (experimental, requires LibreOffice)
+npx @marp-team/marp-cli@latest --no-stdin --pptx --pptx-editable --allow-local-files FILENAME.md -o FILENAME-editable.pptx
+python3 -c "
+from pptx import Presentation
+from pptx.util import Emu
+prs = Presentation('FILENAME-editable.pptx')
+margin = Emu(747720)
+for slide in prs.slides:
+    for shape in slide.shapes:
+        if shape.has_text_frame and shape.shape_type == 17:
+            tf = shape.text_frame
+            if not tf.text.strip() or tf.text.strip().isdigit():
+                continue
+            font_size = None
+            if tf.paragraphs and tf.paragraphs[0].runs:
+                font_size = tf.paragraphs[0].runs[0].font.size
+            if not font_size:
+                continue
+            new_width = prs.slide_width - margin - shape.left
+            if new_width > shape.width:
+                shape.width = new_width
+            min_height = int(font_size * 1.4) * 2
+            if shape.height < min_height:
+                shape.height = min_height
+            tf.word_wrap = True
+prs.save('FILENAME-editable.pptx')
+"
+```
+
+Notes:
+- `--allow-local-files` needed for local images
+- `--pptx-editable` requires LibreOffice installed
+- The python-pptx post-processing fixes text box sizing issues from LibreOffice conversion
+- Always use `--no-stdin` to prevent marp from hanging on stdin
