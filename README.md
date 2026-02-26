@@ -22,6 +22,8 @@ What you get:
 
 See the [full skill file](commands/create-marp-deck.md) for all conventions and the CSS template.
 
+**Read the article**: [Stop Staring at a Blank Deck](https://medium.com/@Omer_Rosenbaum/stop-staring-at-a-blank-deck-how-i-use-claude-code-marp-to-think-through-presentations-74bb95ec67d3) | [View the deck](https://omerr.github.io/claude-skills/presentations/claude-code-marp/)
+
 **Requires**: `npm install -g @marp-team/marp-cli` (or uses `npx` as fallback)
 
 ### `/cr` — Code Review
