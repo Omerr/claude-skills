@@ -44,11 +44,12 @@ Outputs findings categorized by severity (critical / warning / nit) with file pa
 
 ## Installation
 
-### Option 1: Copy individual files
+### Option 1: Install via skills.sh (recommended)
+
+Works with Claude Code, Cursor, GitHub Copilot, and [other AI agents](https://skills.sh):
 
 ```bash
-cp commands/create-marp-deck.md ~/.claude/commands/
-cp commands/cr.md ~/.claude/commands/
+npx skills add Omerr/claude-skills
 ```
 
 ### Option 2: Clone and symlink
@@ -60,7 +61,14 @@ ln -s ~/claude-skills/commands/create-marp-deck.md ~/.claude/commands/
 ln -s ~/claude-skills/commands/cr.md ~/.claude/commands/
 ```
 
-### Option 3: Project-level
+### Option 3: Copy individual files
+
+```bash
+cp commands/create-marp-deck.md ~/.claude/commands/
+cp commands/cr.md ~/.claude/commands/
+```
+
+### Option 4: Project-level
 
 Copy into a specific project's `.claude/` directory to scope them to that repo:
 
